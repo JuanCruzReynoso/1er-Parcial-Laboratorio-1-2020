@@ -31,9 +31,25 @@
 		<Compiler>
 			<Add option="-Wall" />
 		</Compiler>
+		<Unit filename="camiones.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="camiones.h" />
+		<Unit filename="choferes.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="choferes.h" />
+		<Unit filename="choferesCamiones.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="choferesCamiones.h" />
 		<Unit filename="main.c">
 			<Option compilerVar="CC" />
 		</Unit>
+		<Unit filename="marca.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="marca.h" />
 		<Extensions>
 			<code_completion />
 			<envvars />

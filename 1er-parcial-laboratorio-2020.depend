@@ -1,0 +1,47 @@
+# depslib dependency file v1.0
+1591137213 source:c:\users\chilloutket\desktop\parcial laboratorio\1er parcial laboratorio 2020\1er-parcial-laboratorio-1-2020\1er-parcial-laboratorio-2020\camiones.c
+	<stdio.h>
+	<stdlib.h>
+	<string.h>
+	"choferesCamiones.h"
+
+1591139356 source:c:\users\chilloutket\desktop\parcial laboratorio\1er parcial laboratorio 2020\1er-parcial-laboratorio-1-2020\1er-parcial-laboratorio-2020\choferescamiones.c
+	<stdio.h>
+	<stdlib.h>
+	<string.h>
+	"choferes.h"
+	"camiones.h"
+	"marca.h"
+
+1591139356 c:\users\chilloutket\desktop\parcial laboratorio\1er parcial laboratorio 2020\1er-parcial-laboratorio-1-2020\1er-parcial-laboratorio-2020\choferes.h
+
+1591137155 c:\users\chilloutket\desktop\parcial laboratorio\1er parcial laboratorio 2020\1er-parcial-laboratorio-1-2020\1er-parcial-laboratorio-2020\camiones.h
+	"choferes.h"
+	"marca.h"
+
+1591140126 c:\users\chilloutket\desktop\parcial laboratorio\1er parcial laboratorio 2020\1er-parcial-laboratorio-1-2020\1er-parcial-laboratorio-2020\choferescamiones.h
+	"choferes.h"
+	"camiones.h"
+	"marca.h"
+
+1591140125 source:c:\users\chilloutket\desktop\parcial laboratorio\1er parcial laboratorio 2020\1er-parcial-laboratorio-1-2020\1er-parcial-laboratorio-2020\choferes.c
+	<stdio.h>
+	<stdlib.h>
+	<string.h>
+	"choferesCamiones.h"
+
+1591139356 source:c:\users\chilloutket\desktop\parcial laboratorio\1er parcial laboratorio 2020\1er-parcial-laboratorio-1-2020\1er-parcial-laboratorio-2020\main.c
+	<stdio.h>
+	<stdlib.h>
+	<string.h>
+	"choferesCamiones.h"
+
+1590886548 c:\users\chilloutket\desktop\parcial laboratorio\1er parcial laboratorio 2020\1er-parcial-laboratorio-1-2020\1er-parcial-laboratorio-2020\marca.h
+
+1590884802 source:c:\users\chilloutket\desktop\parcial laboratorio\1er parcial laboratorio 2020\1er-parcial-laboratorio-1-2020\1er-parcial-laboratorio-2020\marca.c
+	<stdio.h>
+	<stdlib.h>
+	<string.h>
+	"marca.h"
+	"camiones.h"
+
