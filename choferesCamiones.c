@@ -4,6 +4,7 @@
 #include "choferes.h"
 #include "camiones.h"
 #include "marca.h"
+#include "nacionalidad.h"
 
 #define LIBRE 0
 #define OCUPADO 1
@@ -30,25 +31,34 @@ int menu()
            "\n 17- Promediar antiguedad entre camiones"
            "\n 18- Porcentaje total de choferes varones"
            "\n 19- Buscar choferes por marca"
-           "\n 20- Salir"
+           "\n 20- Buscar choferes por nacionalidad"
+           "\n 21- Ordenar choferes por nacionalidad"
+           "\n 22- Salir"
            "\n Ingrese una opcion: ");
     scanf("%d",&opcion);
     return opcion;
 
 }
 
-void mostrarChoferesConCamiones(eChofer listadoChoferes[], int tChofer, eCamion listadoCamiones[], int tCamion,eMarca listadoMarcas[],int tMarca)
+void mostrarChoferesConCamiones(eChofer listadoChoferes[], int tChofer, eCamion listadoCamiones[], int tCamion,eMarca listadoMarcas[],int tMarca,eNacion listadoNaciones[],int tNacion)
 {
     int i;
     int j;
     int k;
+    int l;
     char flag;
 
     for(i=0; i<tChofer; i++)
     {
         flag = 'n';
-        mostrarChofer(listadoChoferes[i]);
+        for(l=0; l<tNacion; l++)
+        {
+            if(listadoNaciones[l].idNacion==listadoChoferes[i].idNacion)
+            {
+                mostrarChoferNacion(listadoChoferes[i],listadoNaciones,tNacion);
+            }
 
+        }
         for(j=0; j<tCamion; j++)
         {
             if(listadoChoferes[i].idChofer==listadoCamiones[j].idChofer)
@@ -118,7 +128,7 @@ void cargarCamion(eChofer listadoChoferes[], int tChofer, eCamion listadoCamione
 
     i=buscarCamionLibre(listadoCamiones,tCamion);
     id=generarIdCamion(listadoCamiones,tCamion);
-    mostrarChoferes(listadoChoferes,tChofer);
+    ///  mostrarChoferes(listadoChoferes,tChofer);
     printf("Ingrese id del chofer a cargo del camion que desea dar de alta\n");
     scanf("%d",&idAux);
 
@@ -189,7 +199,7 @@ void cargarCamion(eChofer listadoChoferes[], int tChofer, eCamion listadoCamione
 
 }
 
-void eliminarChofer(eChofer listadoChoferes[], int tChofer, eCamion listadoCamiones[], int tCamion)
+void eliminarChofer(eChofer listadoChoferes[], int tChofer, eCamion listadoCamiones[], int tCamion,eNacion listadoNaciones[], int tNacion)
 {
     int i;
     int j;
@@ -198,7 +208,7 @@ void eliminarChofer(eChofer listadoChoferes[], int tChofer, eCamion listadoCamio
     eChofer aux;
     int respuesta;
 
-    mostrarChoferes(listadoChoferes,tChofer);
+    mostrarChoferesNacion(listadoChoferes,tChofer,listadoNaciones,tNacion);
     printf("\nIngrese id del chofer a eliminar: ");
     scanf("%d", &id);
     aux=buscarChoferPorId(listadoChoferes,tChofer,id);
@@ -221,7 +231,7 @@ void eliminarChofer(eChofer listadoChoferes[], int tChofer, eCamion listadoCamio
             switch(respuesta)
             {
             case 1:
-                mostrarChofer(listadoChoferes[i]);
+                ///  mostrarChofer(listadoChoferes[i]);
                 listadoChoferes[i].estado = LIBRE;
                 for(j=0; j<tCamion; j++)
                 {
@@ -353,7 +363,7 @@ void modificarCamion(eChofer listadoChoferes[], int tChofer, eCamion listadoCami
                 while(respuestaMarca!=300 && respuestaMarca!=301 && respuestaMarca !=302);
                 break;
             case 2:
-                mostrarChoferes(listadoChoferes,tChofer);
+///                mostrarChoferes(listadoChoferes,tChofer);
                 printf("Reingrese id del Chofer : ");
                 scanf("%d",&aux.idChofer);
                 break;
@@ -432,7 +442,7 @@ void mostrarChoferesConMasDeUnCamion(eChofer listadoChoferes[], int tChofer, eCa
         if(listadoChoferes[k].estado == OCUPADO && contadorCamiones[k]> 1)
         {
 
-            mostrarChofer(listadoChoferes[k]);
+///            mostrarChofer(listadoChoferes[k]);
             printf("\nCantidad de camiones: %d\n",contadorCamiones[k]);
 
         }
@@ -674,7 +684,7 @@ void mostrarChoferesPorMarca(eChofer listadoChoferes[], int tChofer, eCamion lis
             {
                 if(listadoChoferes[j].estado == OCUPADO && listadoCamiones[i].idChofer == listadoChoferes[j].idChofer)
                 {
-                    mostrarChofer(listadoChoferes[j]);
+///                    mostrarChofer(listadoChoferes[j]);
                 }
             }
 
@@ -682,6 +692,7 @@ void mostrarChoferesPorMarca(eChofer listadoChoferes[], int tChofer, eCamion lis
     }
 
 }
+
 
 
 

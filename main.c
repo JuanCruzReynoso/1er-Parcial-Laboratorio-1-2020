@@ -8,12 +8,14 @@
 #define TCHO 12
 #define TCAM 25
 #define TMAR 3
+#define TNAT 3
 
 int main()
 {
     eChofer listadoChoferes[TCHO];
     eCamion listadoCamiones[TCAM];
     eMarca listadoMarcas[TMAR];
+    eNacion listadoNaciones[TNAT];
     int opcion;
 
     inicializarChoferes(listadoChoferes,TCHO);
@@ -22,6 +24,9 @@ int main()
     hardCodearCamiones(listadoCamiones,TCAM);
     inicializarMarcas(listadoMarcas,TMAR);
     hardCodearMarcas(listadoMarcas,TMAR);
+    inicializarNacionalidad(listadoNaciones,TNAT);
+    hardCodearNacionalidad(listadoNaciones,TNAT);
+
     do
     {
         opcion=menu();
@@ -29,14 +34,15 @@ int main()
         switch(opcion)
         {
         case 1:
-            mostrarChoferes(listadoChoferes, TCHO);
+            /// mostrarChoferes(listadoChoferes, TCHO);
+            mostrarChoferesNacion(listadoChoferes,TCHO,listadoNaciones,TNAT);
             break;
         case 2:
             ///mostrarCamionesConChofer(listadoChoferes,TCHO,listadoCamiones,TCAM,listadoMarcas,TMAR);
             mostrarCamionesMarca(listadoCamiones,TCAM,listadoChoferes,TCHO,listadoMarcas,TMAR);
             break;
         case 3:
-            mostrarChoferesConCamiones(listadoChoferes, TCHO, listadoCamiones, TCAM, listadoMarcas, TMAR);
+            mostrarChoferesConCamiones(listadoChoferes, TCHO, listadoCamiones, TCAM, listadoMarcas, TMAR, listadoNaciones, TNAT);
             break;
         case 4:
             cargarCamion(listadoChoferes, TCHO, listadoCamiones, TCAM,listadoMarcas,TMAR);
@@ -48,17 +54,17 @@ int main()
             modificarCamion(listadoChoferes, TCHO, listadoCamiones, TCAM,listadoMarcas,TMAR);
             break;
         case 7:
-            cargarChofer(listadoChoferes,TCHO);
+            cargarChofer(listadoChoferes,TCHO,listadoNaciones,TNAT);
             break;
         case 8:
-            eliminarChofer(listadoChoferes, TCHO, listadoCamiones, TCAM);
+            eliminarChofer(listadoChoferes, TCHO, listadoCamiones, TCAM,listadoNaciones,TNAT);
             break;
         case 9:
             ordenarCamionesPorTipo(listadoCamiones,TCAM);
             ////   mostrarCamionesConChofer(listadoChoferes,TCHO,listadoCamiones,TCAM,listadoMarcas,TMAR);
             break;
         case 10:
-            modificarChofer(listadoChoferes,TCHO);
+            ///modificarChofer(listadoChoferes,TCHO);
             break;
         case 11:
             mostrarChoferesConMasDeUnCamion(listadoChoferes, TCHO,  listadoCamiones, TCAM);
@@ -71,11 +77,11 @@ int main()
             break;
         case 14:
             ordenarChoferesPorCantidadDeCamiones(listadoChoferes, TCHO, listadoCamiones, TCAM);
-            mostrarChoferes(listadoChoferes,TCHO);
+            /// mostrarChoferes(listadoChoferes,TCHO);
             break;
         case 15:
             ordenarChoferesPorCantidadDeCamionesAlfabeticamente(listadoChoferes, TCHO, listadoCamiones, TCAM);
-            mostrarChoferes(listadoChoferes,TCHO);
+            mostrarChoferesNacion(listadoChoferes,TCHO,listadoNaciones,TNAT);
             break;
         case 16:
             promedioEdadChoferes(listadoChoferes, TCHO);
@@ -90,6 +96,13 @@ int main()
             mostrarChoferesPorMarca(listadoChoferes, TCHO, listadoCamiones, TCAM, listadoMarcas, TMAR);
             break;
         case 20:
+            mostrarChoferesPorNacionalidad(listadoChoferes,TCHO,listadoNaciones,TNAT);
+            break;
+        case 21:
+            ordenarChoferesPorNacionalidadYNombre(listadoChoferes,TCHO);
+            mostrarChoferesNacion(listadoChoferes,TCHO,listadoNaciones,TNAT);
+            break;
+        case 22:
             printf("\nCerrando...");
             break;
         default:
@@ -98,7 +111,7 @@ int main()
 
         }
     }
-    while(opcion!=20);
+    while(opcion!=22);
 
     return 0;
 }

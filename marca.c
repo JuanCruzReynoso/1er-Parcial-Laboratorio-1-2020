@@ -6,8 +6,7 @@
 
 #define LIBRE 0
 #define OCUPADO 1
-#define TCHO 12
-#define TCAM 25
+
 
 void inicializarMarcas(eMarca listado[], int tam)
 {

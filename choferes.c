@@ -25,12 +25,12 @@ void hardCodearChoferes(eChofer listado[], int tam)
     char apellido[6][20]= {"Castro","Morales","Martinez","Reynoso","Maldini","Santos"};
     char dni[6][10]= {"21585456","34666987","12020324","41363891","44323098","32555378"};
     int legajo[6]= {200,201,202,203,204,205};
-    char nacionalidad[6][20]= {"Argentina","Paraguay","Bolivia","Argentina","Uruguay","Peru"};
+    ///char nacionalidad[6][20]= {"Argentina","Paraguay","Bolivia","Argentina","Uruguay","Peru"};
     char telefono[6][10]= {"4303-6805","4302-6685","4301-8822","4302-6645","4301-6869","4323-2020"};
     int edad[6]= {55,44,28,35,62,38};
     char sexo[6][20]= {"femenino","masculino","femenino","masculino","masculino","masculino"};
     int idChofer[6]= {100,101,102,103,104,105};
-
+    int idNacion[6]= {400,401,402,401,401,402};
     int i;
 
     for(i=0; i<6; i++)
@@ -39,28 +39,38 @@ void hardCodearChoferes(eChofer listado[], int tam)
         strcpy(listado[i].apellido, apellido[i]);
         strcpy(listado[i].dni, dni[i]);
         listado[i].legajo = legajo[i];
-        strcpy(listado[i].nacionalidad, nacionalidad[i]);
+        ///strcpy(listado[i].nacionalidad, nacionalidad[i]);
         strcpy(listado[i].telefono, telefono[i]);
         listado[i].edad = edad[i];
         strcpy(listado[i].sexo, sexo[i]);
         listado[i].idChofer = idChofer[i];
+        listado[i].idNacion = idNacion[i];
         listado[i].estado = OCUPADO;
     }
 
 }
-void mostrarChoferes(eChofer listado[], int tam)
+void mostrarChoferes(eChofer listadoChoferes[], int tChofer, eNacion listadoNaciones[], int tNacion)
 {
     int i;
+    int j;
 
     printf("Nombre y Apellido: \t     DNI: \t       Legajo: \t Nacionalidad: \t Telefono: \t     Edad: \t     Sexo:         ID: \n");
 
-    for(i=0; i<tam; i++)
+    for(i=0; i<tChofer; i++)
     {
-        mostrarChofer(listado[i]);
+        for (j=0; j<tNacion; j++)
+        {
+            if(listadoChoferes[i].estado==OCUPADO)
+            {
+                mostrarChofer(listadoChoferes[i],listadoNaciones[j]);
+            }
+
+        }
+
     }
 
 }
-void mostrarChofer(eChofer pChofer)
+void mostrarChofer(eChofer pChofer, eNacion pNacion)
 {
     if(pChofer.estado==OCUPADO)
     {
@@ -68,7 +78,7 @@ void mostrarChofer(eChofer pChofer)
                ,pChofer.apellido
                ,pChofer.dni
                ,pChofer.legajo
-               ,pChofer.nacionalidad
+               ,pNacion.pais
                ,pChofer.telefono
                ,pChofer.edad
                ,pChofer.sexo
@@ -127,7 +137,7 @@ eChofer buscarChoferPorId(eChofer listado[], int tam,int id)
     return aux;
 }
 
-void cargarChofer(eChofer listado[], int tam)
+void cargarChofer(eChofer listado[], int tam, eNacion listadoNaciones[], int tNacion)
 {
     eChofer miChofer;
     int i;
@@ -135,6 +145,7 @@ void cargarChofer(eChofer listado[], int tam)
     int respuestaSexo;
     char masculino[20]="masculino";
     char femenino[20]="femenino";
+    int respuestaNacionalidad;
 
     i=buscarChoferLibre(listado,tam);
     id=generarIdChofer(listado,tam);
@@ -152,9 +163,29 @@ void cargarChofer(eChofer listado[], int tam)
         gets(miChofer.dni);
         printf("\nIngrese legajo: ");
         scanf("%d",&miChofer.legajo);
-        printf("\nIngrese nacionalidad: ");
-        fflush(stdin);
-        gets(miChofer.nacionalidad);
+        do
+        {
+            mostrarNacionalidades(listadoNaciones,tNacion);
+            printf("\nIngrese id de Nacionalidad: ");
+            scanf("%d",&respuestaNacionalidad);
+            switch(respuestaNacionalidad)
+            {
+            case 400:
+                miChofer.idNacion=400;
+                break;
+            case 401:
+                miChofer.idNacion=401;
+                break;
+            case 402:
+                miChofer.idNacion=402;
+                break;
+            default:
+                printf("---------------------------------------------------Respuesta incorrecta---------------------------------------------------");
+                break;
+            }
+
+        }
+        while(respuestaNacionalidad!=400 && respuestaNacionalidad!=401 && respuestaNacionalidad !=402);
         printf("\nIngrese telefono: ");
         fflush(stdin);
         gets(miChofer.telefono);
@@ -218,7 +249,7 @@ void modificarChofer(eChofer listado[], int tam)
     char masculino[20]="masculino";
     char femenino[20]="femenino";
 
-    mostrarChoferes(listado,tam);
+    /// mostrarChoferes(listado,tam);
     printf("\n Ingrese id del chofer a modificar: ");
     scanf("%d", &id);
     aux=buscarChoferPorId(listado,tam,id);
@@ -234,7 +265,7 @@ void modificarChofer(eChofer listado[], int tam)
     if(flag==1)
     {
         aux = listado[i];
-        mostrarChofer(aux);
+        /// mostrarChofer(aux);
         do
         {
             opcion=menuModificarChofer();
@@ -263,7 +294,7 @@ void modificarChofer(eChofer listado[], int tam)
             case 5:
                 printf("Reingrese nacionalidad: ");
                 fflush(stdin);
-                gets(aux.nacionalidad);
+                ///gets(aux.nacionalidad);
                 break;
             case 6:
                 printf("Reingrese telefono: ");
@@ -307,7 +338,7 @@ void modificarChofer(eChofer listado[], int tam)
 
         do
         {
-            mostrarChofer(aux);
+            ///  mostrarChofer(aux);
             printf("\nDesea confirmar modificacion? (1 para confirmar - 2 para cancelar)\n");
             scanf("%d", &respuesta);
 
@@ -388,6 +419,115 @@ void porcentajeChoferesVarones(eChofer listado[], int tam)
     printf("\nEl porcentaje de choferes varones es del: %.2f\n",promedio*100);
 
 }
+
+void mostrarChoferNacion(eChofer pChofer, eNacion listadoNaciones[], int tNacion)
+{
+    eChofer auxChofer;
+    eNacion auxNacion;
+
+    auxNacion = buscarNacionalidad(listadoNaciones,tNacion,pChofer.idNacion);
+    if(pChofer.estado == OCUPADO)
+    {
+        printf("%8s %8s \t %12s \t %12d \t %8s \t %8s \t %8d \t %12s %8d \n",pChofer.nombre
+               ,pChofer.apellido
+               ,pChofer.dni
+               ,pChofer.legajo
+               ,auxNacion.pais
+               ,pChofer.telefono
+               ,pChofer.edad
+               ,pChofer.sexo
+               ,pChofer.idChofer);
+    }
+
+
+}
+
+void mostrarChoferesNacion(eChofer listadoChoferes[], int tChofer, eNacion listadoNaciones[], int tNacion)
+{
+    int i;
+    printf("Nombre y Apellido: \t     DNI: \t       Legajo: \t Nacionalidad: \t Telefono: \t     Edad: \t     Sexo:         ID: \n");
+
+    for(i=0; i<tChofer; i++)
+    {
+        if(listadoChoferes[i].estado==OCUPADO)
+        {
+            mostrarChoferNacion(listadoChoferes[i],listadoNaciones,tNacion);
+        }
+    }
+
+}
+
+void mostrarChoferesPorNacionalidad(eChofer listadoChoferes[], int tChofer, eNacion listadoNaciones[], int tNacion)
+{
+    eNacion aux;
+    int respuestaNacionalidad;
+    int i;
+
+    do
+    {
+        mostrarNacionalidades(listadoNaciones,tNacion);
+        printf("\nIngrese id de nacionalidad a buscar: ");
+        scanf("%d",&respuestaNacionalidad);
+        switch(respuestaNacionalidad)
+        {
+        case 400:
+            aux.idNacion=400;
+            break;
+        case 401:
+            aux.idNacion=401;
+            break;
+        case 402:
+            aux.idNacion=402;
+            break;
+        default:
+            printf("---------------------------------------------------Respuesta incorrecta---------------------------------------------------");
+            break;
+        }
+
+    }
+    while(respuestaNacionalidad!=400 && respuestaNacionalidad!=401 && respuestaNacionalidad !=402);
+
+    for(i = 0 ; i<tChofer; i++)
+    {
+        if(listadoChoferes[i].estado == OCUPADO && listadoChoferes[i].idNacion == aux.idNacion)
+        {
+            mostrarChoferNacion(listadoChoferes[i],listadoNaciones,tNacion);
+        }
+    }
+
+}
+
+void ordenarChoferesPorNacionalidadYNombre(eChofer listadoChoferes[],int tChofer)
+{
+    int i;
+    int j;
+    eChofer auxChofer;
+
+    for(i=0; i<tChofer-1; i++)
+    {
+        for(j=i+1; j<tChofer; j++)
+        {
+            if(listadoChoferes[i].idNacion<listadoChoferes[j].idNacion)
+            {
+                auxChofer=listadoChoferes[i];
+                listadoChoferes[i]=listadoChoferes[j];
+                listadoChoferes[j]=auxChofer;
+            }
+            else if(listadoChoferes[i].idNacion==listadoChoferes[j].idNacion)
+            {
+                if(strcmp(listadoChoferes[i].nombre,listadoChoferes[j].nombre)<0)
+                {
+                    auxChofer = listadoChoferes[i];
+                    listadoChoferes[i] = listadoChoferes[j];
+                    listadoChoferes[j] = auxChofer;
+                }
+            }
+        }
+    }
+}
+
+
+
 
 
 

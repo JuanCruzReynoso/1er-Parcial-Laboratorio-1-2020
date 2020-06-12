@@ -3,15 +3,16 @@
 #include "choferes.h"
 #include "camiones.h"
 #include "marca.h"
+#include "nacionalidad.h"
 
 #define LIBRE 0
 #define OCUPADO 1
 
 int menu();
-void mostrarChoferesConCamiones(eChofer listadoChoferes[], int tChofer, eCamion listadoCamiones[], int tCamion,eMarca listadoMarcas[], int tMarca);
+void mostrarChoferesConCamiones(eChofer listadoChoferes[], int tChofer, eCamion listadoCamiones[], int tCamion,eMarca listadoMarcas[],int tMarca,eNacion listadoNaciones[],int tNacion);
 void mostrarCamionesConChofer(eChofer listadoChoferes[], int tChofer, eCamion listadoCamiones[], int tCamion, eMarca listadoMarcas[], int tMarca);
 void cargarCamion(eChofer listadoChoferes[], int tChofer, eCamion listadoCamiones[], int tCamion, eMarca listadoMarcas[], int tMarca);
-void eliminarChofer(eChofer listadoChoferes[], int tChofer, eCamion listadoCamiones[], int tCamion);
+void eliminarChofer(eChofer listadoChoferes[], int tChofer, eCamion listadoCamiones[], int tCamion,eNacion listadoNaciones[], int tNacion);
 void mostrarCamionMarca(eCamion pCamion, eChofer listadoChoferes[], int tChofer, eMarca listadoMarcas[], int tMarca);
 void mostrarCamionesMarca(eCamion listadoCamiones[], int tCamion, eChofer listadoChoferes[], int tChofer, eMarca listadoMarcas[], int tMarca);
 int menuModificarCamion();
@@ -22,4 +23,5 @@ void mostrarCamionesPorMarca(eChofer listadoChoferes[], int tChofer, eCamion lis
 void ordenarChoferesPorCantidadDeCamiones(eChofer listadoChoferes[], int tChofer, eCamion listadoCamiones[], int tCamion);
 void ordenarChoferesPorCantidadDeCamionesAlfabeticamente(eChofer listadoChoferes[], int tChofer, eCamion listadoCamiones[], int tCamion);
 void mostrarChoferesPorMarca(eChofer listadoChoferes[], int tChofer, eCamion listadoCamiones[], int tCamion, eMarca listadoMarcas[], int tMarca);
+
 #endif // CHOFERESCAMIONES_H_INCLUDED

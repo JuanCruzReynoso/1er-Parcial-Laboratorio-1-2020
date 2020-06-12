@@ -50,6 +50,10 @@
 			<Option compilerVar="CC" />
 		</Unit>
 		<Unit filename="marca.h" />
+		<Unit filename="nacionalidad.c">
+			<Option compilerVar="CC" />
+		</Unit>
+		<Unit filename="nacionalidad.h" />
 		<Extensions>
 			<code_completion />
 			<envvars />
